@@ -35,4 +35,16 @@ public class FlutterNativeSplashPlugin implements FlutterPlugin, MethodCallHandl
   public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
     channel.setMethodCallHandler(null);
   }
+
+  @Override
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState)
+    
+    // Прибираємо анімацію виходу з екрану заставки
+    getSplashScreen().setOnExitAnimationListener { splashScreenView ->
+        splashScreenView.remove()
+    }
+    
+    // Решта коду onCreate...
+}
 }
